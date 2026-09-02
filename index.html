@@ -59,8 +59,13 @@ h1{margin:0;font-size:21px;font-weight:700;letter-spacing:-.02em}
 /* ── 그리드 ── */
 main.wrap{padding:24px 20px 64px}
 .grid{display:grid;gap:16px;grid-template-columns:repeat(var(--cols,4),minmax(0,1fr))}
-@media(max-width:900px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media(max-width:520px){.grid{grid-template-columns:1fr}}
+@media(max-width:640px){
+  .grid{gap:10px}
+  .card .body{padding:9px 10px 11px}
+  .card h3{font-size:13.5px}
+  .card .area{font-size:11.5px}
+  .no{font-size:10.5px}
+}
 
 .card{
   display:block;width:100%;text-align:left;background:var(--panel);
@@ -72,8 +77,14 @@ main.wrap{padding:24px 20px 64px}
 .art.empty{display:flex;align-items:center;justify-content:center;color:var(--mute);font-size:12.5px}
 .card .body{padding:11px 13px 13px}
 .no{font-size:11.5px;color:var(--mute);font-variant-numeric:tabular-nums;letter-spacing:.02em}
-.card h3{margin:1px 0 5px;font-size:15px;font-weight:600;letter-spacing:-.01em}
-.card .area{margin:0;font-size:12.5px;color:var(--ink-2)}
+/* 이름 2줄 고정 + 지역 1줄 — 열 수와 무관하게 카드 안 텍스트 줄이 맞는다 */
+.card h3{
+  margin:1px 0 5px;font-size:15px;font-weight:600;letter-spacing:-.01em;line-height:1.35;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;
+  overflow:hidden;min-height:2.7em
+}
+.card .area{margin:0;font-size:12.5px;color:var(--ink-2);
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .card .dot{display:inline-block;width:4px;height:4px;border-radius:50%;background:var(--accent);margin:0 6px 2px 0}
 
 /* ── 한 장씩 ── */
@@ -172,11 +183,7 @@ footer p{margin:0 0 4px}
       </div>
       <div class="cols" id="colsBox">
         <span class="lbl">열</span>
-        <div class="seg" id="colSeg">
-          <button data-cols="3" aria-pressed="false">3</button>
-          <button data-cols="4" aria-pressed="true">4</button>
-          <button data-cols="5" aria-pressed="false">5</button>
-        </div>
+        <div class="seg" id="colSeg"></div>
       </div>
     </div>
   </div>
@@ -233,7 +240,14 @@ footer p{margin:0 0 4px}
 /* 제보 디스코드 채널 URL. 비워두면 「현황」 탭의 제보 버튼이 숨겨진다. */
 const SUBMIT_URL = '';
 
-const state = { view:'grid', cols:4, q:'', idx:0 };
+/* 좁은 화면에선 3/4/5 가 무의미해서 선택지 자체를 1/2/3 으로 바꾼다.
+   고른 숫자가 곧 실제 열 수 — 미디어쿼리로 몰래 덮어쓰지 않는다. */
+const SM = 640;
+const isSm = () => window.innerWidth < SM;
+const colOpts = () => isSm() ? [1, 2, 3] : [3, 4, 5];
+
+const state = { view:'grid', cols:4, colsSm:2, q:'', idx:0 };
+const curCols = () => isSm() ? state.colsSm : state.cols;
 let data = [], filtered = [], maxNo = 0;
 
 const $ = s => document.querySelector(s);
@@ -248,6 +262,7 @@ async function init(){
   const saved = JSON.parse(localStorage.getItem('battlelist') || '{}');
   if (saved.view) state.view = saved.view;
   if (saved.cols) state.cols = saved.cols;
+  if (saved.colsSm) state.colsSm = saved.colsSm;
 
   const raw = await (await fetch('data/battle_list.json')).json();
   data = raw.entries; maxNo = raw.max_no;
@@ -261,7 +276,7 @@ async function init(){
   if (hit >= 0){ state.idx = hit; state.view = 'one'; }
 
   syncSeg('#viewSeg','view',state.view);
-  syncSeg('#colSeg','cols',String(state.cols));
+  renderColSeg();
   render();
 }
 
@@ -271,7 +286,14 @@ function syncSeg(sel, attr, val){
 }
 
 function save(){
-  localStorage.setItem('battlelist', JSON.stringify({view:state.view, cols:state.cols}));
+  localStorage.setItem('battlelist',
+    JSON.stringify({view:state.view, cols:state.cols, colsSm:state.colsSm}));
+}
+
+function renderColSeg(){
+  const cur = curCols();
+  $('#colSeg').innerHTML = colOpts().map(n =>
+    `<button data-cols="${n}" aria-pressed="${n === cur}">${n}</button>`).join('');
 }
 
 function render(){
@@ -324,7 +346,7 @@ function renderBoard(){
 }
 
 function renderGrid(){
-  gridView.style.setProperty('--cols', state.cols);
+  gridView.style.setProperty('--cols', curCols());
   gridView.innerHTML = filtered.map((b,i) => `
     <button class="card" data-i="${i}">
       ${b.thumb
@@ -388,7 +410,17 @@ $('#viewSeg').addEventListener('click', e => {
 
 $('#colSeg').addEventListener('click', e => {
   const b = e.target.closest('button'); if (!b) return;
-  state.cols = +b.dataset.cols; syncSeg('#colSeg','cols',b.dataset.cols); save(); render();
+  if (isSm()) state.colsSm = +b.dataset.cols; else state.cols = +b.dataset.cols;
+  renderColSeg(); save(); render();
+});
+
+let wasSm = isSm(), rt;
+window.addEventListener('resize', () => {
+  clearTimeout(rt);
+  rt = setTimeout(() => {
+    if (isSm() === wasSm) return;
+    wasSm = isSm(); renderColSeg(); render();
+  }, 150);
 });
 
 gridView.addEventListener('click', e => {

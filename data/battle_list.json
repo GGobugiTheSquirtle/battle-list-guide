@@ -1,0 +1,288 @@
+{
+  "max_no": 534,
+  "entries": [
+    {
+      "id": "0001",
+      "name": "마수 바레스",
+      "condition": "메인 스토리 2장 시작",
+      "area": "달그림자 숲",
+      "medal": "없음",
+      "extra": null,
+      "image": "0001.webp",
+      "thumb": "0001_t.webp",
+      "info_images": []
+    },
+    {
+      "id": "0002",
+      "name": "갤리어드",
+      "condition": "메인 스토리 4장 시작",
+      "area": "공업도시 폐허",
+      "medal": "없음",
+      "extra": null,
+      "image": "0002.webp",
+      "thumb": "0002_t.webp",
+      "info_images": []
+    },
+    {
+      "id": "0003",
+      "name": "어둠의 샐러맨더",
+      "condition": "메인 스토리 6장 시작",
+      "area": "나다라 화산",
+      "medal": "없음",
+      "extra": null,
+      "image": "0003.webp",
+      "thumb": "0003_t.webp",
+      "info_images": []
+    },
+    {
+      "id": "0004",
+      "name": "???",
+      "condition": "메인 스토리 9장 시작",
+      "area": "식인 늪",
+      "medal": "없음",
+      "extra": null,
+      "image": "0004.webp",
+      "thumb": "0004_t.webp",
+      "info_images": []
+    },
+    {
+      "id": "0005",
+      "name": "환시 태아",
+      "condition": "메인 스토리 10장 시작",
+      "area": "시간의 탑",
+      "medal": "없음",
+      "extra": null,
+      "image": "0005.webp",
+      "thumb": "0005_t.webp",
+      "info_images": []
+    },
+    {
+      "id": "0006",
+      "name": "오우거베인",
+      "condition": "메인 스토리 12장 시작",
+      "area": "카레크 습지",
+      "medal": "없음",
+      "extra": null,
+      "image": "0006.webp",
+      "thumb": "0006_t.webp",
+      "info_images": []
+    },
+    {
+      "id": "0007",
+      "name": "마수왕",
+      "condition": "메인 스토리 13장 시작",
+      "area": "미글랜스 성",
+      "medal": "없음",
+      "extra": null,
+      "image": "0007.webp",
+      "thumb": "0007_t.webp",
+      "info_images": []
+    },
+    {
+      "id": "0008",
+      "name": "마수왕 길드너",
+      "condition": "메인 스토리 13장 시작",
+      "area": "미글랜스 성",
+      "medal": "없음",
+      "extra": null,
+      "image": "0008.webp",
+      "thumb": "0008_t.webp",
+      "info_images": []
+    },
+    {
+      "id": "0009",
+      "name": "합성드론",
+      "condition": "메인 스토리 16장 시작",
+      "area": "제노 도메인",
+      "medal": "없음",
+      "extra": null,
+      "image": "0009.webp",
+      "thumb": "0009_t.webp",
+      "info_images": []
+    },
+    {
+      "id": "0010",
+      "name": "시층의 뒤틀림",
+      "condition": "메인 스토리 17장 시작",
+      "area": "시층회랑",
+      "medal": "없음",
+      "extra": null,
+      "image": "0010.webp",
+      "thumb": "0010_t.webp",
+      "info_images": []
+    },
+    {
+      "id": "0011",
+      "name": "헬레나",
+      "condition": "메인 스토리 19장 시작",
+      "area": "공업도시 폐허",
+      "medal": "없음",
+      "extra": null,
+      "image": "0011.webp",
+      "thumb": "0011_t.webp",
+      "info_images": []
+    },
+    {
+      "id": "0012",
+      "name": "주포",
+      "condition": "메인 스토리 20장 시작",
+      "area": "차원전함",
+      "medal": "없음",
+      "extra": null,
+      "image": "0012.webp",
+      "thumb": "0012_t.webp",
+      "info_images": []
+    },
+    {
+      "id": "0013",
+      "name": "합성귀룡",
+      "condition": "메인 스토리 20장 시작",
+      "area": "차원전함",
+      "medal": "없음",
+      "extra": null,
+      "image": "0013.webp",
+      "thumb": "0013_t.webp",
+      "info_images": []
+    },
+    {
+      "id": "0014",
+      "name": "파르지팔 왕",
+      "condition": "메인 스토리 21장 시작",
+      "area": "별의 탑",
+      "medal": "없음",
+      "extra": null,
+      "image": "0014.webp",
+      "thumb": "0014_t.webp",
+      "info_images": []
+    },
+    {
+      "id": "0015",
+      "name": "마수천사 지오 앙길라스",
+      "condition": "메인 스토리 22장 시작",
+      "area": "마수성",
+      "medal": "없음",
+      "extra": null,
+      "image": "0015.webp",
+      "thumb": "0015_t.webp",
+      "info_images": []
+    },
+    {
+      "id": "0016",
+      "name": "팬텀 연결체",
+      "condition": "메인 스토리 23장 시작",
+      "area": "차원의 소용돌이",
+      "medal": "없음",
+      "extra": null,
+      "image": "0016.webp",
+      "thumb": "0016_t.webp",
+      "info_images": []
+    },
+    {
+      "id": "0017",
+      "name": "태초의 신속",
+      "condition": "메인 스토리 25장 시작",
+      "area": "시간의 어둠",
+      "medal": "없음",
+      "extra": null,
+      "image": "0017.webp",
+      "thumb": "0017_t.webp",
+      "info_images": []
+    },
+    {
+      "id": "0018",
+      "name": "태초의 염화",
+      "condition": "메인 스토리 25장 시작",
+      "area": "시간의 어둠",
+      "medal": "없음",
+      "extra": null,
+      "image": "0018.webp",
+      "thumb": "0018_t.webp",
+      "info_images": []
+    },
+    {
+      "id": "0019",
+      "name": "태초의 빙결",
+      "condition": "메인 스토리 25장 시작",
+      "area": "시간의 어둠",
+      "medal": "없음",
+      "extra": null,
+      "image": "0019.webp",
+      "thumb": "0019_t.webp",
+      "info_images": []
+    },
+    {
+      "id": "0020",
+      "name": "태초의 단괴",
+      "condition": "메인 스토리 25장 시작",
+      "area": "시간의 어둠",
+      "medal": "없음",
+      "extra": null,
+      "image": "0020.webp",
+      "thumb": "0020_t.webp",
+      "info_images": []
+    },
+    {
+      "id": "0480",
+      "name": "유나이트 워든",
+      "condition": "메인 스토리 112장 시작",
+      "area": "예지의 탑",
+      "medal": null,
+      "extra": null,
+      "image": "0480.webp",
+      "thumb": "0480_t.webp",
+      "info_images": []
+    },
+    {
+      "id": "0488",
+      "name": "화원의 왕",
+      "condition": "메인 스토리 112장 시작",
+      "area": "시든 동산",
+      "medal": null,
+      "extra": "예지의 탑 워록급에서 우승",
+      "image": null,
+      "thumb": null,
+      "info_images": [
+        "0488_info1.webp"
+      ]
+    },
+    {
+      "id": "0489",
+      "name": "유적의 검귀",
+      "condition": "메인 스토리 112장 시작",
+      "area": "루트 임페르아",
+      "medal": null,
+      "extra": "예지의 탑 워록급에서 우승",
+      "image": "0489.webp",
+      "thumb": "0489_t.webp",
+      "info_images": [
+        "0489_info1.webp"
+      ]
+    },
+    {
+      "id": "0533",
+      "name": "데스 오우거?",
+      "condition": "메인 스토리 116장 클리어",
+      "area": "식시 오우거 요새 심층",
+      "medal": null,
+      "extra": "식시 아르키리스 평원의 특정 이벤트 시작",
+      "image": "0533.webp",
+      "thumb": "0533_t.webp",
+      "info_images": [
+        "0533_info1.webp"
+      ]
+    },
+    {
+      "id": "0534",
+      "name": "헬 오우거?",
+      "condition": "메인 스토리 116장 클리어",
+      "area": "식시 오우거 요새 심층",
+      "medal": null,
+      "extra": "식시 아르키리스 평원의 특정 이벤트 시작",
+      "image": "0534.webp",
+      "thumb": "0534_t.webp",
+      "info_images": [
+        "0534_info1.webp"
+      ]
+    }
+  ]
+}

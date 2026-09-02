@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>어나더에덴 배틀 리스트</title>
+<meta name="description" content="어나더에덴 배틀 리스트 25종 — 시작 조건, 출현 지역, 훈장 보상, 추가 정보를 게임 화면 그대로 정리">
+<meta property="og:title" content="어나더에덴 배틀 리스트">
+<meta property="og:description" content="배틀 리스트 25종 — 시작 조건 · 출현 지역 · 훈장 보상 정리">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://cdn.jsdelivr.net">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
+<style>
+:root{
+  --bg:#f6f5f7; --panel:#fff; --line:#e6e4ea;
+  --ink:#1c1a20; --ink-2:#55515e; --mute:#8f8b98;
+  --accent:#6d54b5; --accent-soft:#f1ecfa;
+  --art-bg:#f3f0f6;
+  --radius:12px;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+.hide{display:none!important}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0; background:var(--bg); color:var(--ink);
+  font-family:'Pretendard Variable',Pretendard,-apple-system,'Malgun Gothic',sans-serif;
+  font-size:15px; line-height:1.6; word-break:keep-all;
+  -webkit-font-smoothing:antialiased;
+}
+button{font:inherit;color:inherit;cursor:pointer;border:0;background:none}
+img{display:block;max-width:100%}
+
+.wrap{max-width:1240px;margin:0 auto;padding:0 20px}
+
+/* ── 헤더 ── */
+header{background:var(--panel);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:20}
+.head-top{display:flex;align-items:baseline;gap:12px;padding:18px 0 14px}
+h1{margin:0;font-size:21px;font-weight:700;letter-spacing:-.02em}
+.sub{font-size:13px;color:var(--mute)}
+.count{margin-left:auto;font-size:13px;color:var(--mute);font-variant-numeric:tabular-nums}
+
+.controls{display:flex;flex-wrap:wrap;gap:10px;align-items:center;padding-bottom:14px}
+.search{position:relative;flex:1 1 240px;min-width:200px}
+.search input{
+  width:100%;padding:9px 12px 9px 34px;border:1px solid var(--line);border-radius:9px;
+  background:var(--bg);font:inherit;color:var(--ink);outline:none;transition:.15s
+}
+.search input:focus{background:#fff;border-color:var(--accent)}
+.search svg{position:absolute;left:11px;top:50%;transform:translateY(-50%);color:var(--mute)}
+
+.seg{display:flex;background:var(--bg);border:1px solid var(--line);border-radius:9px;padding:3px;gap:2px}
+.seg button{padding:6px 13px;border-radius:6px;font-size:13.5px;color:var(--ink-2);transition:.15s;white-space:nowrap}
+.seg button[aria-pressed="true"]{background:var(--panel);color:var(--ink);font-weight:600;box-shadow:0 1px 3px rgba(0,0,0,.07)}
+.cols{display:flex;align-items:center;gap:8px}
+.cols .lbl{font-size:13px;color:var(--mute)}
+.cols .seg button{padding:6px 11px;font-variant-numeric:tabular-nums}
+
+/* ── 그리드 ── */
+main.wrap{padding:24px 20px 64px}
+.grid{display:grid;gap:16px;grid-template-columns:repeat(var(--cols,4),minmax(0,1fr))}
+@media(max-width:900px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:520px){.grid{grid-template-columns:1fr}}
+
+.card{
+  display:block;width:100%;text-align:left;background:var(--panel);
+  border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;transition:.16s
+}
+.card:hover{border-color:#d3cee0;box-shadow:0 6px 18px rgba(40,30,60,.09);transform:translateY(-2px)}
+.art{aspect-ratio:1150/626;background:var(--art-bg);overflow:hidden}
+.art img{width:100%;height:100%;object-fit:cover}
+.art.empty{display:flex;align-items:center;justify-content:center;color:var(--mute);font-size:12.5px}
+.card .body{padding:11px 13px 13px}
+.no{font-size:11.5px;color:var(--mute);font-variant-numeric:tabular-nums;letter-spacing:.02em}
+.card h3{margin:1px 0 5px;font-size:15px;font-weight:600;letter-spacing:-.01em}
+.card .area{margin:0;font-size:12.5px;color:var(--ink-2)}
+.card .dot{display:inline-block;width:4px;height:4px;border-radius:50%;background:var(--accent);margin:0 6px 2px 0}
+
+/* ── 한 장씩 ── */
+.pager{display:flex;align-items:center;gap:10px;margin-bottom:16px}
+.pager button{
+  padding:8px 14px;border:1px solid var(--line);border-radius:9px;background:var(--panel);
+  font-size:13.5px;transition:.15s
+}
+.pager button:hover:not(:disabled){border-color:var(--accent);color:var(--accent)}
+.pager button:disabled{opacity:.4;cursor:default}
+.pager .pos{font-size:13px;color:var(--mute);font-variant-numeric:tabular-nums;margin-left:auto}
+
+.one{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+.one .hero{background:var(--art-bg);cursor:zoom-in}
+.one .hero img{width:100%;height:auto}
+.one .hero.empty{height:180px;display:flex;align-items:center;justify-content:center;color:var(--mute);font-size:13px;cursor:default}
+.one .body{padding:20px 22px 24px}
+.one h2{margin:2px 0 16px;font-size:24px;font-weight:700;letter-spacing:-.02em}
+
+dl.facts{display:grid;grid-template-columns:88px 1fr;gap:9px 16px;margin:0;font-size:14.5px}
+dl.facts dt{color:var(--mute);font-size:13px;padding-top:1px}
+dl.facts dd{margin:0}
+dl.facts dd.unknown{color:var(--mute)}
+.extra{margin-top:16px;padding:12px 14px;background:var(--accent-soft);border-radius:9px;font-size:14px}
+.extra b{display:block;font-size:12px;color:var(--accent);font-weight:600;margin-bottom:3px}
+.shots{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
+.shots img{width:220px;border:1px solid var(--line);border-radius:8px;cursor:zoom-in}
+
+/* ── 수집 현황 ── */
+.notice{
+  background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
+  padding:16px 18px;margin-bottom:18px;font-size:14px
+}
+.notice h3{margin:0 0 8px;font-size:15px;font-weight:700}
+.notice ol{margin:0;padding-left:19px;color:var(--ink-2)}
+.notice li{margin-bottom:3px}
+.notice .cta{
+  display:inline-block;margin-top:12px;padding:8px 16px;border-radius:9px;
+  background:var(--accent);color:#fff;font-size:13.5px;font-weight:600;text-decoration:none
+}
+
+.progress{display:flex;align-items:center;gap:12px;margin-bottom:12px}
+.progress .bar{flex:1;height:6px;background:var(--line);border-radius:99px;overflow:hidden}
+.progress .bar i{display:block;height:100%;background:var(--accent);border-radius:99px}
+.progress .val{font-size:13px;color:var(--ink-2);font-variant-numeric:tabular-nums;white-space:nowrap}
+
+.legend{display:flex;flex-wrap:wrap;gap:14px;margin-bottom:14px;font-size:12.5px;color:var(--ink-2)}
+.legend span{display:flex;align-items:center;gap:6px}
+.legend i{width:11px;height:11px;border-radius:3px;display:block}
+.sw-full{background:var(--accent)}
+.sw-part{background:#c9b6ee}
+.sw-none{background:var(--panel);border:1px solid var(--line)}
+
+.board{display:grid;grid-template-columns:repeat(auto-fill,minmax(56px,1fr));gap:5px}
+.chip{
+  padding:6px 0;border-radius:6px;text-align:center;font-size:11.5px;
+  font-variant-numeric:tabular-nums;border:1px solid transparent
+}
+.chip.none{background:var(--panel);border-color:var(--line);color:#bdb9c6}
+.chip.part{background:#c9b6ee;color:#3a2b60;font-weight:600}
+.chip.full{background:var(--accent);color:#fff;font-weight:600}
+.chip.full:hover,.chip.part:hover{outline:2px solid var(--accent);outline-offset:1px}
+
+.empty-msg{padding:60px 0;text-align:center;color:var(--mute)}
+
+footer.wrap{border-top:1px solid var(--line);padding:20px 20px 44px;font-size:12.5px;color:var(--mute)}
+footer p{margin:0 0 4px}
+
+/* ── 라이트박스 ── */
+#lb{position:fixed;inset:0;z-index:50;background:rgba(20,18,24,.9);display:none;cursor:zoom-out;padding:24px}
+#lb.on{display:flex;align-items:center;justify-content:center}
+#lb img{max-width:100%;max-height:100%;object-fit:contain;border-radius:6px}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="head-top">
+      <h1>배틀 리스트</h1>
+      <span class="sub">어나더에덴</span>
+      <span class="count" id="count"></span>
+    </div>
+    <div class="controls">
+      <div class="search">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.6-3.6"/></svg>
+        <input id="q" type="search" placeholder="이름 · 번호 · 지역 검색" autocomplete="off">
+      </div>
+      <div class="seg" id="viewSeg">
+        <button data-view="grid" aria-pressed="true">그리드</button>
+        <button data-view="one" aria-pressed="false">한 장씩</button>
+        <button data-view="board" aria-pressed="false">현황</button>
+      </div>
+      <div class="cols" id="colsBox">
+        <span class="lbl">열</span>
+        <div class="seg" id="colSeg">
+          <button data-cols="3" aria-pressed="false">3</button>
+          <button data-cols="4" aria-pressed="true">4</button>
+          <button data-cols="5" aria-pressed="false">5</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+  <div id="gridView" class="grid"></div>
+  <div id="oneView" hidden>
+    <div class="pager">
+      <button id="prev">← 이전</button>
+      <button id="next">다음 →</button>
+      <span class="pos" id="pos"></span>
+    </div>
+    <article class="one" id="oneCard"></article>
+  </div>
+
+  <div id="boardView" hidden>
+    <div class="notice">
+      <h3>제보 받습니다</h3>
+      <ol>
+        <li>아래 번호판에서 <b>비어 있는 번호</b>를 찾는다.</li>
+        <li>게임 「배틀」 화면에서 해당 개체를 열고, <b>좌측 패널 전체</b>가 나오게 캡처.</li>
+        <li>정보창을 <b>아래로 스크롤해 「훈장 보상」까지</b> 보이게 한 장 더. (안 그러면 미확인으로 남는다)</li>
+        <li>「추가 정보」 버튼이 있으면 눌러서 한 장 더.</li>
+        <li>스샷만 올리면 된다 — <b>번호·이름·조건은 화면에 다 찍혀 있어서 따로 안 적어도 됨.</b></li>
+      </ol>
+      <a class="cta" id="submitLink" href="#" target="_blank" rel="noopener" hidden>제보하기</a>
+    </div>
+
+    <div class="progress">
+      <div class="bar"><i id="bar"></i></div>
+      <span class="val" id="progVal"></span>
+    </div>
+    <div class="legend">
+      <span><i class="sw-full"></i>전부 확인</span>
+      <span><i class="sw-part"></i>일부 미확인 (재촬영 필요)</span>
+      <span><i class="sw-none"></i>미수집</span>
+    </div>
+    <div class="board" id="board"></div>
+  </div>
+
+  <p class="empty-msg" id="noResult" hidden>검색 결과가 없습니다.</p>
+</main>
+
+<footer class="wrap">
+  <p>게임 내 「배틀」 화면 캡처 기준. 「훈장 보상」이 <b>미확인</b>인 항목은 정보창이 스크롤돼 화면에 잡히지 않은 것.</p>
+  <p>No.0488 화원의 왕은 일러스트 캡처 미수집.</p>
+</footer>
+
+<div id="lb"><img id="lbImg" alt=""></div>
+
+<script>
+/* 제보 채널 URL. 디스코드 채널/스레드 링크를 넣으면 「현황」 탭에 버튼이 뜬다. */
+const SUBMIT_URL = 'https://github.com/GGobugiTheSquirtle/battle-list-guide/issues/new?template=%EB%B3%B4%EC%8A%A4-%EC%A0%9C%EB%B3%B4.md';
+
+const state = { view:'grid', cols:4, q:'', idx:0 };
+let data = [], filtered = [], maxNo = 0;
+
+const $ = s => document.querySelector(s);
+const gridView = $('#gridView'), oneView = $('#oneView'), oneCard = $('#oneCard');
+const boardView = $('#boardView'), board = $('#board');
+const noResult = $('#noResult'), countEl = $('#count'), posEl = $('#pos');
+const lb = $('#lb'), lbImg = $('#lbImg');
+
+const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+async function init(){
+  const saved = JSON.parse(localStorage.getItem('battlelist') || '{}');
+  if (saved.view) state.view = saved.view;
+  if (saved.cols) state.cols = saved.cols;
+
+  const raw = await (await fetch('data/battle_list.json')).json();
+  data = raw.entries; maxNo = raw.max_no;
+
+  if (SUBMIT_URL){
+    const a = $('#submitLink'); a.href = SUBMIT_URL; a.hidden = false;
+  }
+
+  const hash = location.hash.slice(1);
+  const hit = data.findIndex(b => b.id === hash);
+  if (hit >= 0){ state.idx = hit; state.view = 'one'; }
+
+  syncSeg('#viewSeg','view',state.view);
+  syncSeg('#colSeg','cols',String(state.cols));
+  render();
+}
+
+function syncSeg(sel, attr, val){
+  document.querySelectorAll(sel + ' button').forEach(b =>
+    b.setAttribute('aria-pressed', String(b.dataset[attr] === val)));
+}
+
+function save(){
+  localStorage.setItem('battlelist', JSON.stringify({view:state.view, cols:state.cols}));
+}
+
+function render(){
+  const q = state.q.trim().toLowerCase();
+  filtered = q
+    ? data.filter(b => (b.name + b.id + b.area + b.condition).toLowerCase().includes(q))
+    : data;
+
+  const onBoard = state.view === 'board';
+  countEl.textContent = onBoard
+    ? `${data.length} / ${maxNo}종 수집`
+    : (q ? `${filtered.length} / ${data.length}종` : `${data.length}종`);
+  noResult.hidden = onBoard || filtered.length > 0;
+  $('#colsBox').classList.toggle('hide', state.view !== 'grid');
+  $('.search').classList.toggle('hide', onBoard);
+
+  if (state.idx >= filtered.length) state.idx = 0;
+
+  gridView.hidden  = state.view !== 'grid';
+  oneView.hidden   = state.view !== 'one';
+  boardView.hidden = !onBoard;
+
+  if (state.view === 'grid') renderGrid();
+  else if (state.view === 'one') renderOne();
+  else renderBoard();
+}
+
+/* 상태: full = 아트 + 모든 필드 확인 / part = 일부만 / none = 미수집 */
+function stateOf(b){
+  if (!b) return 'none';
+  return (b.image && b.medal) ? 'full' : 'part';
+}
+
+function renderBoard(){
+  const byId = new Map(data.map(b => [b.id, b]));
+  const done = data.filter(b => stateOf(b) === 'full').length;
+  $('#bar').style.width = (data.length / maxNo * 100).toFixed(1) + '%';
+  $('#progVal').textContent = `${data.length} / ${maxNo} 수집 (전부 확인 ${done})`;
+
+  let html = '';
+  for (let n = 1; n <= maxNo; n++){
+    const id = String(n).padStart(4, '0');
+    const b = byId.get(id);
+    const cls = stateOf(b);
+    html += b
+      ? `<button class="chip ${cls}" data-id="${id}" title="${esc(b.name)}">${id}</button>`
+      : `<div class="chip none">${id}</div>`;
+  }
+  board.innerHTML = html;
+}
+
+function renderGrid(){
+  gridView.style.setProperty('--cols', state.cols);
+  gridView.innerHTML = filtered.map((b,i) => `
+    <button class="card" data-i="${i}">
+      ${b.thumb
+        ? `<div class="art"><img src="images/${esc(b.thumb)}" alt="${esc(b.name)}" loading="lazy"></div>`
+        : `<div class="art empty">일러스트 미수집</div>`}
+      <div class="body">
+        <div class="no">No.${esc(b.id)}</div>
+        <h3>${esc(b.name)}</h3>
+        <p class="area">${b.extra ? '<span class="dot"></span>' : ''}${esc(b.area)}</p>
+      </div>
+    </button>`).join('');
+}
+
+function renderOne(){
+  const b = filtered[state.idx];
+  if (!b){ oneCard.innerHTML = ''; posEl.textContent = ''; return; }
+
+  posEl.textContent = `${state.idx + 1} / ${filtered.length}`;
+  $('#prev').disabled = state.idx === 0;
+  $('#next').disabled = state.idx === filtered.length - 1;
+  history.replaceState(null, '', '#' + b.id);
+
+  const fact = (k, v) => v
+    ? `<dt>${k}</dt><dd>${esc(v)}</dd>`
+    : `<dt>${k}</dt><dd class="unknown">미확인</dd>`;
+
+  oneCard.innerHTML = `
+    ${b.image
+      ? `<div class="hero" data-src="images/${esc(b.image)}"><img src="images/${esc(b.image)}" alt="${esc(b.name)}"></div>`
+      : `<div class="hero empty">일러스트 캡처 미수집</div>`}
+    <div class="body">
+      <div class="no">No.${esc(b.id)}</div>
+      <h2>${esc(b.name)}</h2>
+      <dl class="facts">
+        ${fact('시작 조건', b.condition)}
+        ${fact('출현 지역', b.area)}
+        ${fact('훈장 보상', b.medal)}
+      </dl>
+      ${b.extra ? `<div class="extra"><b>추가 정보</b>${esc(b.extra)}</div>` : ''}
+      ${b.info_images.length
+        ? `<div class="shots">${b.info_images.map(f =>
+            `<img src="images/${esc(f)}" alt="추가 정보" loading="lazy" data-src="images/${esc(f)}">`).join('')}</div>`
+        : ''}
+    </div>`;
+}
+
+function go(delta){
+  state.idx = Math.min(Math.max(state.idx + delta, 0), filtered.length - 1);
+  renderOne();
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+/* ── 이벤트 ── */
+$('#q').addEventListener('input', e => { state.q = e.target.value; state.idx = 0; render(); });
+
+$('#viewSeg').addEventListener('click', e => {
+  const b = e.target.closest('button'); if (!b) return;
+  state.view = b.dataset.view; syncSeg('#viewSeg','view',state.view); save(); render();
+});
+
+$('#colSeg').addEventListener('click', e => {
+  const b = e.target.closest('button'); if (!b) return;
+  state.cols = +b.dataset.cols; syncSeg('#colSeg','cols',b.dataset.cols); save(); render();
+});
+
+gridView.addEventListener('click', e => {
+  const c = e.target.closest('.card'); if (!c) return;
+  state.idx = +c.dataset.i; state.view = 'one';
+  syncSeg('#viewSeg','view','one'); save(); render(); window.scrollTo({top:0});
+});
+
+board.addEventListener('click', e => {
+  const c = e.target.closest('.chip[data-id]'); if (!c) return;
+  state.q = ''; $('#q').value = '';
+  state.view = 'one';
+  syncSeg('#viewSeg','view','one'); save(); render();
+  state.idx = data.findIndex(b => b.id === c.dataset.id);
+  renderOne(); window.scrollTo({top:0});
+});
+
+$('#prev').addEventListener('click', () => go(-1));
+$('#next').addEventListener('click', () => go(1));
+
+oneCard.addEventListener('click', e => {
+  const t = e.target.closest('[data-src]'); if (!t) return;
+  lbImg.src = t.dataset.src; lb.classList.add('on'); document.body.style.overflow = 'hidden';
+});
+lb.addEventListener('click', () => { lb.classList.remove('on'); document.body.style.overflow = ''; });
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape' && lb.classList.contains('on')){
+    lb.classList.remove('on'); document.body.style.overflow = ''; return;
+  }
+  if (state.view !== 'one' || lb.classList.contains('on')) return;
+  if (document.activeElement === $('#q')) return;
+  if (e.key === 'ArrowLeft') go(-1);
+  if (e.key === 'ArrowRight') go(1);
+});
+
+init();
+</script>
+</body>
+</html>

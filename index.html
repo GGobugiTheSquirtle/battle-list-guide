@@ -99,6 +99,7 @@ dl.facts dd{margin:0}
 dl.facts dd.unknown{color:var(--mute)}
 .extra{margin-top:16px;padding:12px 14px;background:var(--accent-soft);border-radius:9px;font-size:14px}
 .extra b{display:block;font-size:12px;color:var(--accent);font-weight:600;margin-bottom:3px}
+.credit{margin:14px 0 0;font-size:12.5px;color:var(--mute)}
 .shots{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
 .shots img{width:220px;border:1px solid var(--line);border-radius:8px;cursor:zoom-in}
 
@@ -108,7 +109,9 @@ dl.facts dd.unknown{color:var(--mute)}
   padding:16px 18px;margin-bottom:18px;font-size:14px
 }
 .notice h3{margin:0 0 8px;font-size:15px;font-weight:700}
+.notice .lead{margin:0 0 10px;color:var(--ink-2)}
 .notice ol{margin:0;padding-left:19px;color:var(--ink-2)}
+.notice .hintx{color:var(--mute);font-size:13px}
 .notice li{margin-bottom:3px}
 .notice .cta{
   display:inline-block;margin-top:12px;padding:8px 16px;border-radius:9px;
@@ -193,14 +196,15 @@ footer p{margin:0 0 4px}
   <div id="boardView" hidden>
     <div class="notice">
       <h3>제보 받습니다</h3>
+      <p class="lead">아래 번호판에서 <b>비어 있는 번호</b>를 찍어 디스코드 채널에 올려주세요.
+        스샷만 던지면 됩니다 — <b>번호·이름·조건은 화면에 다 찍혀 있어서 따로 안 적어도 됩니다.</b></p>
       <ol>
-        <li>아래 번호판에서 <b>비어 있는 번호</b>를 찾는다.</li>
-        <li>게임 「배틀」 화면에서 해당 개체를 열고, <b>좌측 패널 전체</b>가 나오게 캡처.</li>
-        <li>정보창을 <b>아래로 스크롤해 「훈장 보상」까지</b> 보이게 한 장 더. (안 그러면 미확인으로 남는다)</li>
-        <li>「추가 정보」 버튼이 있으면 눌러서 한 장 더.</li>
-        <li>스샷만 올리면 된다 — <b>번호·이름·조건은 화면에 다 찍혀 있어서 따로 안 적어도 됨.</b></li>
+        <li>「배틀」 화면에서 해당 개체를 열고 <b>좌측 패널 전체</b>가 나오게 한 장</li>
+        <li>정보창을 <b>아래로 스크롤해 「훈장 보상」까지</b> 보이게 한 장
+          <span class="hintx">— 이게 없으면 훈장 보상이 「미확인」으로 남습니다</span></li>
+        <li>「추가 정보」 버튼이 있으면 눌러서 한 장</li>
       </ol>
-      <a class="cta" id="submitLink" href="#" target="_blank" rel="noopener" hidden>제보하기</a>
+      <a class="cta" id="submitLink" href="#" target="_blank" rel="noopener" hidden>제보 채널 열기</a>
     </div>
 
     <div class="progress">
@@ -226,8 +230,8 @@ footer p{margin:0 0 4px}
 <div id="lb"><img id="lbImg" alt=""></div>
 
 <script>
-/* 제보 채널 URL. 디스코드 채널/스레드 링크를 넣으면 「현황」 탭에 버튼이 뜬다. */
-const SUBMIT_URL = 'https://github.com/GGobugiTheSquirtle/battle-list-guide/issues/new?template=%EB%B3%B4%EC%8A%A4-%EC%A0%9C%EB%B3%B4.md';
+/* 제보 디스코드 채널 URL. 비워두면 「현황」 탭의 제보 버튼이 숨겨진다. */
+const SUBMIT_URL = '';
 
 const state = { view:'grid', cols:4, q:'', idx:0 };
 let data = [], filtered = [], maxNo = 0;
@@ -360,6 +364,7 @@ function renderOne(){
         ${fact('훈장 보상', b.medal)}
       </dl>
       ${b.extra ? `<div class="extra"><b>추가 정보</b>${esc(b.extra)}</div>` : ''}
+      ${b.credit ? `<p class="credit">제보 ${esc(b.credit)}</p>` : ''}
       ${b.info_images.length
         ? `<div class="shots">${b.info_images.map(f =>
             `<img src="images/${esc(f)}" alt="추가 정보" loading="lazy" data-src="images/${esc(f)}">`).join('')}</div>`

@@ -12,7 +12,8 @@
 
 ## 제보 방법
 
-번호판에서 비어 있는 번호를 찾아 스크린샷을 찍어 보내주세요.
+「현황」 탭 번호판에서 비어 있는 번호를 찾아, **디스코드 제보 채널에 스샷을 올려주세요.**
+(채널 링크는 준비되는 대로 「현황」 탭 상단에 버튼으로 붙습니다)
 
 1. 「배틀」 화면에서 해당 개체를 열고 **좌측 패널 전체**가 나오게 캡처
 2. 정보창을 **아래로 스크롤해 「훈장 보상」까지** 보이게 한 장 더
@@ -31,16 +32,24 @@ No.0488 화원의 왕은 일러스트 캡처가 없습니다.
 데이터·이미지는 전부 스크린샷에서 생성됩니다. 손으로 JSON을 고치지 마세요.
 
 ```bash
-# 1) 받은 스샷 더미를 판독용 contact sheet 로 정리
-py -3.14 ../_tools/ingest_battlelist.py <제보_이미지_폴더>
+# 1) 디스코드 제보 채널에서 새 스샷 내려받기 (증분, 원본 해상도 그대로)
+py -3.14 ../_tools/discord_to_battlelist.py
+#    → _archive/battle-list-screenshots/inbox/ + _submissions.json(제보자 기록)
+
+# 2) 판독용 contact sheet 로 정리 (중복 제거 + 본편/팝업 자동 분류)
+py -3.14 ../_tools/ingest_battlelist.py ../_archive/battle-list-screenshots/inbox
 #    → _tmp/battlelist_ingest/sheet_XX.jpg + manifest.tsv
 
-# 2) sheet 를 보고 원본을 _archive/battle-list-screenshots/ 로 옮긴 뒤
-#    ../_tools/build_battlelist.py 의 ENTRIES 에 행 추가
+# 3) sheet 를 읽고 원본을 _archive/battle-list-screenshots/ 로 옮긴 뒤
+#    ../_tools/build_battlelist.py 의 ENTRIES 에 행 추가 (제보자는 9번째 항목)
 
-# 3) 이미지 크롭 + JSON 재생성
+# 4) 이미지 크롭 + JSON 재생성
 py -3.14 ../_tools/build_battlelist.py
 ```
+
+`_tools/.env` 에 `DISCORD_TOKEN`(냥도장과 공용) + `BATTLELIST_CHANNEL_ID` 필요.
+봇 등록은 필요 없다 — 유저 토큰으로 채널을 읽는다.
+페이지의 제보 버튼은 `index.html` 상단 `SUBMIT_URL` 상수에 채널 링크를 넣으면 나타난다.
 
 `ENTRIES` 가 단일 진실원본이다. `data/battle_list.json` 과 `images/*.webp` 는 전부 생성물.
 

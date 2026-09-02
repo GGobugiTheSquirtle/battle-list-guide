@@ -8,6 +8,7 @@
       "area": "달그림자 숲",
       "medal": "없음",
       "extra": null,
+      "credit": null,
       "image": "0001.webp",
       "thumb": "0001_t.webp",
       "info_images": []
@@ -19,6 +20,7 @@
       "area": "공업도시 폐허",
       "medal": "없음",
       "extra": null,
+      "credit": null,
       "image": "0002.webp",
       "thumb": "0002_t.webp",
       "info_images": []
@@ -30,6 +32,7 @@
       "area": "나다라 화산",
       "medal": "없음",
       "extra": null,
+      "credit": null,
       "image": "0003.webp",
       "thumb": "0003_t.webp",
       "info_images": []
@@ -41,6 +44,7 @@
       "area": "식인 늪",
       "medal": "없음",
       "extra": null,
+      "credit": null,
       "image": "0004.webp",
       "thumb": "0004_t.webp",
       "info_images": []
@@ -52,6 +56,7 @@
       "area": "시간의 탑",
       "medal": "없음",
       "extra": null,
+      "credit": null,
       "image": "0005.webp",
       "thumb": "0005_t.webp",
       "info_images": []
@@ -63,6 +68,7 @@
       "area": "카레크 습지",
       "medal": "없음",
       "extra": null,
+      "credit": null,
       "image": "0006.webp",
       "thumb": "0006_t.webp",
       "info_images": []
@@ -74,6 +80,7 @@
       "area": "미글랜스 성",
       "medal": "없음",
       "extra": null,
+      "credit": null,
       "image": "0007.webp",
       "thumb": "0007_t.webp",
       "info_images": []
@@ -85,6 +92,7 @@
       "area": "미글랜스 성",
       "medal": "없음",
       "extra": null,
+      "credit": null,
       "image": "0008.webp",
       "thumb": "0008_t.webp",
       "info_images": []
@@ -96,6 +104,7 @@
       "area": "제노 도메인",
       "medal": "없음",
       "extra": null,
+      "credit": null,
       "image": "0009.webp",
       "thumb": "0009_t.webp",
       "info_images": []
@@ -107,6 +116,7 @@
       "area": "시층회랑",
       "medal": "없음",
       "extra": null,
+      "credit": null,
       "image": "0010.webp",
       "thumb": "0010_t.webp",
       "info_images": []
@@ -118,6 +128,7 @@
       "area": "공업도시 폐허",
       "medal": "없음",
       "extra": null,
+      "credit": null,
       "image": "0011.webp",
       "thumb": "0011_t.webp",
       "info_images": []
@@ -129,6 +140,7 @@
       "area": "차원전함",
       "medal": "없음",
       "extra": null,
+      "credit": null,
       "image": "0012.webp",
       "thumb": "0012_t.webp",
       "info_images": []
@@ -140,6 +152,7 @@
       "area": "차원전함",
       "medal": "없음",
       "extra": null,
+      "credit": null,
       "image": "0013.webp",
       "thumb": "0013_t.webp",
       "info_images": []
@@ -151,6 +164,7 @@
       "area": "별의 탑",
       "medal": "없음",
       "extra": null,
+      "credit": null,
       "image": "0014.webp",
       "thumb": "0014_t.webp",
       "info_images": []
@@ -162,6 +176,7 @@
       "area": "마수성",
       "medal": "없음",
       "extra": null,
+      "credit": null,
       "image": "0015.webp",
       "thumb": "0015_t.webp",
       "info_images": []
@@ -173,6 +188,7 @@
       "area": "차원의 소용돌이",
       "medal": "없음",
       "extra": null,
+      "credit": null,
       "image": "0016.webp",
       "thumb": "0016_t.webp",
       "info_images": []
@@ -184,6 +200,7 @@
       "area": "시간의 어둠",
       "medal": "없음",
       "extra": null,
+      "credit": null,
       "image": "0017.webp",
       "thumb": "0017_t.webp",
       "info_images": []
@@ -195,6 +212,7 @@
       "area": "시간의 어둠",
       "medal": "없음",
       "extra": null,
+      "credit": null,
       "image": "0018.webp",
       "thumb": "0018_t.webp",
       "info_images": []
@@ -206,6 +224,7 @@
       "area": "시간의 어둠",
       "medal": "없음",
       "extra": null,
+      "credit": null,
       "image": "0019.webp",
       "thumb": "0019_t.webp",
       "info_images": []
@@ -217,6 +236,7 @@
       "area": "시간의 어둠",
       "medal": "없음",
       "extra": null,
+      "credit": null,
       "image": "0020.webp",
       "thumb": "0020_t.webp",
       "info_images": []
@@ -228,6 +248,7 @@
       "area": "예지의 탑",
       "medal": null,
       "extra": null,
+      "credit": null,
       "image": "0480.webp",
       "thumb": "0480_t.webp",
       "info_images": []
@@ -239,6 +260,7 @@
       "area": "시든 동산",
       "medal": null,
       "extra": "예지의 탑 워록급에서 우승",
+      "credit": null,
       "image": null,
       "thumb": null,
       "info_images": [
@@ -252,6 +274,7 @@
       "area": "루트 임페르아",
       "medal": null,
       "extra": "예지의 탑 워록급에서 우승",
+      "credit": null,
       "image": "0489.webp",
       "thumb": "0489_t.webp",
       "info_images": [
@@ -265,6 +288,7 @@
       "area": "식시 오우거 요새 심층",
       "medal": null,
       "extra": "식시 아르키리스 평원의 특정 이벤트 시작",
+      "credit": null,
       "image": "0533.webp",
       "thumb": "0533_t.webp",
       "info_images": [
@@ -278,6 +302,7 @@
       "area": "식시 오우거 요새 심층",
       "medal": null,
       "extra": "식시 아르키리스 평원의 특정 이벤트 시작",
+      "credit": null,
       "image": "0534.webp",
       "thumb": "0534_t.webp",
       "info_images": [
